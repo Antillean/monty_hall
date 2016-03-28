@@ -1,6 +1,7 @@
-import random, argparse, math
+import random, argparse, math, locale
 from multiprocessing import Pool
 
+locale.setlocale(locale.LC_ALL, "")
 rand = random.SystemRandom()
 
 class Result:
@@ -66,7 +67,7 @@ def get_args():
 
 def main():
     num_tries = get_args()
-    print("\nSimulating game {0:d} times.".format(num_tries))
+    print(locale.format_string("\nSimulating game %d times.", num_tries, grouping=True))
     chunk_size = 10**4
 
     game = Game()
@@ -80,9 +81,9 @@ def main():
             final_result.switch += result.switch
             final_result.random += result.random
 
-    print("\nAlways keeping first resulted in {0:d} cars, or cars {1:.2f}% of the time.".format(final_result.first, final_result.first/num_tries * 100))
-    print("Always switching resulted in {0:d} cars, or cars {1:.2f}% of the time.".format(final_result.switch, final_result.switch/num_tries * 100))
-    print("Randomly switching resulted in {0:d} cars, or cars {1:.2f}% of the time.\n".format(final_result.random, final_result.random/num_tries * 100))
+    print(locale.format_string("\nAlways keeping first resulted in %d cars, or cars %.2f%% of the time.", (final_result.first, final_result.first/num_tries * 100), grouping=True))
+    print(locale.format_string("Always switching resulted in %d cars, or cars %.2f%% of the time.", (final_result.switch, final_result.switch/num_tries * 100), grouping=True))
+    print(locale.format_string("Randomly switching resulted in %d cars, or cars %.2f%%  of the time.\n", (final_result.random, final_result.random/num_tries * 100), grouping=True))
 
 
 if __name__ == '__main__':
