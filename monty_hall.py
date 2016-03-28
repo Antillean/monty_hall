@@ -12,7 +12,8 @@ class Result:
 class Game:
     def __init__(self):
         """Sets up the game. A 0 in the choice is a goat, a 1 is the car."""
-        self.choices = rand.shuffle([0, 0, 1])
+        self.choices = [0, 0, 1]
+        rand.shuffle(self.choices)
 
     def make_first_choice(self):
         """Choose an index denoting the first choice in the choices."""
