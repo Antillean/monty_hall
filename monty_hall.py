@@ -58,7 +58,7 @@ def get_num_runs_chunk(num_tries, chunk_size):
 def get_args():
     """Get the one optional command-line arg."""
     parser = argparse.ArgumentParser()
-    parser.add_argument("-n", "--num_tries", help="Number of tries.", default="10**6")
+    parser.add_argument("-n", "--num_tries", help="Number of tries.", default="10**3")
     args = parser.parse_args()
 
     return eval(args.num_tries)
